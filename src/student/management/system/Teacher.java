@@ -50,4 +50,8 @@ public class Teacher {
         salaryEarned+=salary;
         School.updateTotalMoneySpent(salary);
     }
+
+    public double getSalaryEarned(){
+        return salaryEarned;
+    }
 }

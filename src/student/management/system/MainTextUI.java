@@ -285,21 +285,38 @@ public class MainTextUI {
      */
     private static void printTeacherInfo(Teacher t){
         System.out.println("-----------------------------------------");
-        System.out.println("ID: " + t.getId() + " | Name: " + t.getName() + " | Salary: " + t.getTeacherSalary());
+        System.out.println("ID: " + t.getId() + " | Name: " + t.getName());
+        System.out.println("Salary: " + t.getTeacherSalary() + " | Earned " + t.getSalaryEarned());
         System.out.println("-----------------------------------------");
     }
+    /**
+     * -----Finance Menu-----
+     */
 
+    private static void financeMenu(){
+        while(true){
+            System.out.println("\n=========================================");
+            System.out.println("         SCHOOL FINANCES");
+            System.out.println("=========================================");
+            System.out.println("1. View Total Money Earned");
+            System.out.println("2. View Total Money Spent");
+            System.out.println("3. View Current Balance");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("-----------------------------------------\nEnter your choice: ");
 
+            int choice = getIntInput();
 
-
-
-
-
-
-
-
-
-
+            switch(choice){
+                case 1 -> System.out.println("Total Money Earned: " + school.getTotalMoneyEarned());
+                case 2 -> System.out.println("Total Money Spent: " + school.getTotalMoneySpent());
+                case 3 -> System.out.println("Current Balance: " + school.getSchoolNetBalance());
+                case 4 ->{
+                    return;
+                }
+                default -> System.out.println("Invalid choice. Try again");
+            }
+        }
+    }
 
 
     /**
