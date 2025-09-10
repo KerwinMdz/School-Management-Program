@@ -1,0 +1,32 @@
+--------NOTES ON WHAT I LEARNT--------
+
+This is a basic Student Management System program that simulates a School with teachers and students.
+
+---Student class:---
+* For the student class we create instance variables for an id, name, grade, feesPaid
+and feeTotal.
+
+* The constructor parameter accepts and initializes the id, name and grade.
+* feesPaid is set = 0 and feeTotal is set to 5000 for every student that is created.
+
+Student class Methods:
+* Since feesPaid is set to 0, a payFees method is needed so students can
+
+---Teacher class:---
+* The teacher class creates a teacher object and has instance variables for id, name, salary
+and salaryEarned.
+
+The constructor takes in parameters for id, name and salary... salaryEarned is set to 0
+
+---School class---
+* The most important class where I learnt quite a bit.
+* The School class holds many teachers and students using ArrayLists.
+* An important note that I learnt is that setting instance variables and methods as static...
+  allows you to use them outside of the class and this is important since we need to use the
+  methods from the School class inside the Teacher and Student class.
+
+* The School class has instance variables of Teacher and Students
+* It also has totalMoneyEarned and totalMoneySpent which means that we need to access those
+  variables in the Teacher and Student class, hence where declaring them as "static" comes in
+
+
