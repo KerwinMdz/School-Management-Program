@@ -174,6 +174,132 @@ public class MainTextUI {
      * -----Teacher Menu------
      */
 
+    private static void teacherMenu(){
+        while (true){
+            System.out.println("\n=========================================");
+            System.out.println("         TEACHER MANAGEMENT");
+            System.out.println("=========================================");
+            System.out.println("1. Add Teacher");
+            System.out.println("2. Update Teacher Salary");
+            System.out.println("3. Record Teacher Salary Payment");
+            System.out.println("4. View All Teachers");
+            System.out.println("5. View Teacher by ID");
+            System.out.println("6. Back to Main Menu");
+            System.out.print("-----------------------------------------\nEnter your choice: ");
+
+            int choice = getIntInput();
+
+            switch (choice){
+                case 1 -> addTeacher();
+                case 2 -> updateTeacherSalary();
+                case 3 -> recordTeacherSalary();
+                case 4 -> viewAllTeachers();
+                case 5 -> viewTeacherById();
+                case 6 -> {
+                    return;
+                }
+                default -> System.out.println("Invalid choice, Try again.");
+            }
+        }
+    }
+
+    private static void addTeacher(){
+        System.out.print("Create an ID: ");
+        int id = getIntInput();
+        System.out.print("Enter a name: ");
+        String name = kbd.nextLine();
+        System.out.print("Enter salary: ");
+        double salary = getDoubleInput();
+
+        Teacher teacher = new Teacher(id, name, salary);
+        school.addTeacher(teacher);
+    }
+
+    private static void updateTeacherSalary(){
+        System.out.print("Enter teacher ID: ");
+        int id = getIntInput();
+        Teacher teacher = findTeacherById(id);
+        if(teacher != null){
+            System.out.print("Enter new teacher salary: ");
+            double salary = getDoubleInput();
+            teacher.setSalary(salary);
+            System.out.println("Teacher salary successfully updated!");
+        } else {
+            System.out.println("Teacher not found");
+        }
+    }
+
+    private static void recordTeacherSalary(){
+        System.out.print("Enter teacher ID : ");
+        int id = getIntInput();
+        Teacher teacher = findTeacherById(id);
+
+        if(teacher != null){
+            System.out.print("Enter salary: ");
+            double salary = getDoubleInput();
+            teacher.recievedSalary(salary);
+            System.out.println("Salary has been successfully recorded.");
+        } else {
+            System.out.println("Teacher not found.");
+        }
+    }
+
+    private static void viewAllTeachers(){
+        if(school.getTeacher().isEmpty()){
+            System.out.println("No teachers found.");
+        }
+        for(Teacher t : school.getTeacher()){
+            printTeacherInfo(t);
+        }
+    }
+
+    private static void viewTeacherById(){
+        System.out.println("Enter teacher ID: ");
+        int id = getIntInput();
+        Teacher teacher = findTeacherById(id);
+
+        if(teacher != null){
+            printTeacherInfo(teacher);
+        } else {
+            System.out.println("Teacher not found");
+        }
+    }
+
+    /**
+     * Finding teacher by ID
+     * @param id
+     * @return
+     */
+    private static Teacher findTeacherById(int id){
+        for(Teacher t : school.getTeacher()){
+            if(t.getId() == id){
+                return t;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param t Print Teacher Information
+     */
+    private static void printTeacherInfo(Teacher t){
+        System.out.println("-----------------------------------------");
+        System.out.println("ID: " + t.getId() + " | Name: " + t.getName() + " | Salary: " + t.getTeacherSalary());
+        System.out.println("-----------------------------------------");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
