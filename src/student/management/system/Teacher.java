@@ -44,11 +44,12 @@ public class Teacher {
     /**
      * Adds to salaryEarned
      * Deducts from the total money earned by school
-     * @param salary
      */
-    public void recievedSalary(double salary){
-        salaryEarned+=salary;
-        School.updateTotalMoneySpent(salary);
+    public void recievedSalary(double salary) {
+        if (salary > 0) {
+            salaryEarned += salary;
+            School.updateTotalMoneySpent(salary);
+        }
     }
 
     public double getSalaryEarned(){
