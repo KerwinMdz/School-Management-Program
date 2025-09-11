@@ -26,9 +26,13 @@ public class Student {
      * We take in a fee as the parameter then keep adding it to the existing feesPaid.
      * We also need a setter method to change grade
      */
-    public void payFees(double fee){
-        feesPaid+=fee;
-        School.updateTotalMoneyEarned(fee);
+    public void payFees(double fee) {
+        if (fee > 0) {
+            feesPaid += fee;
+            School.updateTotalMoneyEarned(fee);
+        } else {
+            System.out.println("Enter an amount greater than $1.00");
+        }
     }
 
     public void setGrade(int grade){
