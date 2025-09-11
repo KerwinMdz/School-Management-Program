@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainTextUI {
-    private static Scanner kbd = new Scanner(System.in);
+    private final static Scanner kbd = new Scanner(System.in);
     /**
      * Created School object that has 2 empty ArrayList parameters
      */
-    private static School school = new School(new ArrayList<>(), new ArrayList<>());
+    private final static School school = new School(new ArrayList<>(), new ArrayList<>());
 
     public static void main(String[] args) {
 
-
-        /**
-         * ----MAIN MENU----
-         */
+         // ----MAIN MENU----
 
         while(true){
             System.out.println("\n=========================================");
@@ -25,7 +22,7 @@ public class MainTextUI {
             System.out.println("2. Teacher Management");
             System.out.println("3. School Finances");
             System.out.println("4. Exit");
-            System.out.println("-----------------------------------------\nEnter your choice: ");
+            System.out.print("-----------------------------------------\nEnter your choice: ");
 
             int choice = getIntInput();
 
@@ -58,7 +55,7 @@ public class MainTextUI {
             System.out.println("4. View All Students");
             System.out.println("5. View Student by ID");
             System.out.println("6. Back to Main Menu");
-            System.out.println("-----------------------------------------\nEnter your choice: ");
+            System.out.print("-----------------------------------------\nEnter your choice: ");
 
             int choice = getIntInput();
 
@@ -82,8 +79,13 @@ public class MainTextUI {
      */
 
     private static void addStudent(){
-        System.out.print("Create student ID");
-        int id = getIntInput();
+        System.out.print("Create student ID: ");
+        int id = getIntIdInput();
+        //Test
+        if(id == 0){
+            System.out.println("Cancelled adding student");
+            return;
+        }
         System.out.print("Enter student name: ");
         String name = kbd.nextLine();
         System.out.print("Enter student grade: ");
@@ -110,7 +112,7 @@ public class MainTextUI {
     }
 
     private static void recordStudentFee(){
-        System.out.print("Enter student ID");
+        System.out.print("Enter student ID: ");
         int id = getIntInput();
         Student student = findStudentByID(id);
         if(student != null){
@@ -160,7 +162,6 @@ public class MainTextUI {
      * @param id Method which find students by their ID
      *           It loops through the ArrayList of students and checks if the student
      *           id exist. If it exists then it returns the ID, if not then in returns null
-     * @return
      */
     private static Student findStudentByID(int id){
         for(Student s : school.getStudent()){
@@ -230,7 +231,7 @@ public class MainTextUI {
     }
 
     private static void recordTeacherSalary(){
-        System.out.print("Enter teacher ID : ");
+        System.out.print("Enter teacher ID: ");
         int id = getIntInput();
         Teacher teacher = findTeacherById(id);
 
@@ -267,8 +268,6 @@ public class MainTextUI {
 
     /**
      * Finding teacher by ID
-     * @param id
-     * @return
      */
     private static Teacher findTeacherById(int id){
         for(Teacher t : school.getTeacher()){
@@ -327,6 +326,25 @@ public class MainTextUI {
         while(true){
             try {
                 int choice = Integer.parseInt(kbd.nextLine());
+                return choice;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Enter a number: ");
+            }
+        }
+    }
+    // For ID inputs only
+    private static int getIntIdInput(){
+        while(true){
+            try {
+                int choice = Integer.parseInt(kbd.nextLine());
+                //Test
+                if(choice == 0){
+                    return 0;
+                }
+                if(choice < 1000){
+                    System.out.print("ID must be at least 4 digits long (0 to go back to menu): ");
+                } else
+                    return choice;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Enter a number: ");
             }
@@ -337,8 +355,9 @@ public class MainTextUI {
         while(true){
             try{
                 double choice = Double.parseDouble(kbd.nextLine());
+                return choice;
             } catch (Exception e) {
-                System.out.println("Invalide input. Enter a decimal number");
+                System.out.println("Invalid input. Enter a decimal number");
             }
         }
     }
