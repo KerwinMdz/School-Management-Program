@@ -4,11 +4,11 @@ import java.util.ArrayList;
 /**
  * This class holds many teachers and students using ArrayList.
  * Setting the instance variables as static allows us to use them
- * outside of the School class
+ * outside the School class
  */
 public class School {
-    private ArrayList <Teacher> teachers;
-    private ArrayList <Student> students;
+    private final ArrayList <Teacher> teachers;
+    private final ArrayList <Student> students;
     private static double totalMoneyEarned;
     private static double totalMoneySpent;
 
@@ -21,7 +21,7 @@ public class School {
     /**
      * getters for all instance variables.
      * Pay close attention to how methods with ArrayLists are done.
-     *
+     * ------------------------------------------------------------------------------
      * The getTeacher and getStudent methods return the list of teachers
      * and students when they are called.
      */
@@ -46,10 +46,10 @@ public class School {
     /**
      * setters for all instance variables.
      * In this instance we want to add a teacher to the ArrayList.
-     *
+     * ------------------------------------------------------------------------------
      * By doing so we need to use the teacher object and NOT the ArrayList<Teacher>
      * of teachers.
-     *
+     * ------------------------------------------------------------------------------
      * Remember we used the .add() method to add data to an ArrayList.
      * Or it adds a teacher to the school or adds a student to the school.
      */
@@ -63,7 +63,7 @@ public class School {
     /**
      * Adds the money earned by the school
      * @param moneyEarned is the money being added
-     * keyword static allows us to use method outside of the class
+     * keyword static allows us to use method outside the class
      */
     public static void updateTotalMoneyEarned(double moneyEarned){
         totalMoneyEarned+=moneyEarned;
@@ -78,6 +78,6 @@ public class School {
     }
 
     public double getSchoolNetBalance(){
-        return getTotalMoneyEarned() - totalMoneySpent;
+        return getTotalMoneyEarned() - getTotalMoneySpent();
     }
 }
